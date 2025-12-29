@@ -28,7 +28,7 @@ export async function POST(req) {
         instagram: data.instagram || null,
         facebook: data.facebook || null,
         whatsapp: data.whatsapp || null,
-        mapEmbedUrl: data.whatsapp || null,
+        mapEmbedUrl: data.mapEmbedUrl || null,
       },
     });
 
@@ -41,4 +41,5 @@ export async function POST(req) {
     );
   }
 }
+
 
