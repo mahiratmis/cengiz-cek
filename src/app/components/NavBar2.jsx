@@ -72,7 +72,7 @@ export default function NavBar2() {
             {LINKS.map(({ id, label }) => (
               <a
                 key={id}
-                href={`#${id}`}
+                href={`/#${id}`}
                 className={`${styles.nav2Link} ${
                   active === id ? styles.active : ""
                 }`}
@@ -108,3 +108,4 @@ export default function NavBar2() {
     </nav>
   );
 }
+
