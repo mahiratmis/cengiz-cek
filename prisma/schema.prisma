@@ -61,6 +61,7 @@ model Branch {
   whatsapp  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  mapEmbedUrl  String?   // 🔴 Yeni alan: Harita iframe src'si
 
   announcements  Announcement[]
   staff          Staff[]
