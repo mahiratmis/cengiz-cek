@@ -7,19 +7,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Announcement {
-  id          Int       @id @default(autoincrement())
-  title       String
-  slug        String    @unique
-  summary     String?   // 🔹 Kartlarda kullanabileceğimiz kısa özet
-  content     String    // HTML (rich text)
-  audience    String?   // "genel" | "veli" | "ogrenci" gibi
-  coverImage  String?   // 🔹 Kart / detay için kapak görseli URL
-  isPublished Boolean   @default(false)
-  publishAt   DateTime? // 🔹 Planlı yayın tarihi (boşsa hemen)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-}
+
 
 
 model Parent {
@@ -42,18 +30,7 @@ model Student {
   createdAt   DateTime  @default(now())
 }
 
-model Staff {
-  id        Int      @id @default(autoincrement())
-  name      String
-  branch    String
-  role      String?      // Örn: "Matematik Öğretmeni", "Rehber Öğretmen"
-  photoUrl  String?      // Kadro fotoğrafı
-  bio       String?      // Kısa tanıtım yazısı
-  priority  Int      @default(0) // Sıralama için
-  isActive  Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
+
 
 model SuccessStory {
   id        Int      @id @default(autoincrement())
@@ -68,5 +45,57 @@ model SuccessStory {
   priority  Int      @default(0) // Sıralama
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  branchId Int
+  branch   Branch @relation(fields: [branchId], references: [id])  
 }
 
+model Branch {
+  id        Int      @id @default(autoincrement())
+  name      String
+  slug      String   @unique
+  address   String?
+  phone     String?
+  instagram String?
+  facebook  String?
+  whatsapp  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  announcements  Announcement[]
+  staff          Staff[]
+  successStories SuccessStory[]
+}
+
+model Staff {
+  id        Int      @id @default(autoincrement())
+  name      String
+  branch    String
+  role      String?      // Örn: "Matematik Öğretmeni", "Rehber Öğretmen"
+  photoUrl  String?      // Kadro fotoğrafı
+  bio       String?      // Kısa tanıtım yazısı
+  priority  Int      @default(0) // Sıralama için
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  branchId Int
+  branchRel Branch @relation(fields: [branchId], references: [id]) // ← isim çakışmasın diye branchRel
+}
+
+model Announcement {
+  id          Int       @id @default(autoincrement())
+  title       String
+  slug        String    @unique
+  summary     String?   // 🔹 Kartlarda kullanabileceğimiz kısa özet
+  content     String    // HTML (rich text)
+  audience    String?   // "genel" | "veli" | "ogrenci" gibi
+  coverImage  String?   // 🔹 Kart / detay için kapak görseli URL
+  isPublished Boolean   @default(false)
+  publishAt   DateTime? // 🔹 Planlı yayın tarihi (boşsa hemen)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  branchId Int
+  branch   Branch @relation(fields: [branchId], references: [id])  
+}
