@@ -74,9 +74,11 @@ model Staff {
   branch    String
   role      String?      // Örn: "Matematik Öğretmeni", "Rehber Öğretmen"
   photoUrl  String?      // Kadro fotoğrafı
+  cvUrl    String?      // Özgeçmiş PDF URL
   bio       String?      // Kısa tanıtım yazısı
   priority  Int      @default(0) // Sıralama için
   isActive  Boolean  @default(true)
+  isFounder  Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -99,4 +101,42 @@ model Announcement {
 
   branchId Int
   branch   Branch @relation(fields: [branchId], references: [id])  
+}
+
+model ExamApplication {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  fullName  String
+  grade     String
+  phone     String
+  email     String?
+  notes     String?
+
+  kvkk      Boolean  @default(false)
+  kvkkAt    DateTime?
+
+  status    String   @default("new") // new, called, registered, cancelled...
+  adminNote String?
+
+  @@index([createdAt])
+  @@index([status])
+}
+
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  approvedAt DateTime?
+
+  type      String   // "student" | "parent"
+  fullName  String
+  grade     String?  // öğrenci ise
+  childName String?  // veli ise (opsiyonel)
+  phone     String?  // opsiyonel (admin için)
+  email     String?  // opsiyonel (admin için)
+  message   String
+
+  approved  Boolean  @default(false)
+
+  @@index([approved, createdAt])
 }
