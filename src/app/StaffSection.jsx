@@ -80,12 +80,6 @@ export default function StaffSection({
                 style={{ cursor: "pointer" }}
                 onClick={() => setSelected(p)}
               >
-                {p.isFounder && (
-                  <span className={styles.founderBadge}>
-                    Kurucu
-                  </span>
-                )}
-
                 <img
                   className={styles.staffAvatar}
                   src={p.photoUrl || p.photo || "/staff/1.jpg"}
