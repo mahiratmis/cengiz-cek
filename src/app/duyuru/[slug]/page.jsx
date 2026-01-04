@@ -58,12 +58,7 @@ export default async function DuyuruDetayPage({ params }) {
           </div>
 
           <article
-            style={{
-              background: "#ffffff",
-              borderRadius: 12,
-              padding: 16,
-              border: "1px solid #e5e7eb",
-            }}
+            className={styles.announcementBody}
             dangerouslySetInnerHTML={{ __html: duyuru.content }}
           />
         </Container>
@@ -71,3 +66,4 @@ export default async function DuyuruDetayPage({ params }) {
     </SiteLayout>
   );
 }
+
