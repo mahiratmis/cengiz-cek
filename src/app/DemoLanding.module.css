@@ -905,32 +905,60 @@ html { scroll-behavior: smooth; }
   gap: 8px;
 }
 
-/* 📱 Mobil düzen */
+/* =========================
+   TOPBAR MOBİL SİMETRİ FIX
+   (Edesis Giriş + Sınav Başvurusu)
+   ========================= */
+
+/* Desktop/Genel: aynı yükseklik (opsiyonel ama önerilir) */
+.topLink{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+}
+
+.btnPrimary{
+  min-height: 42px;
+}
+
+/* 📱 Mobil: iki buton %50-%50 simetrik */
 @media (max-width: 640px) {
   .topInner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 10px;
+  }
+
+  .topLeft {
+    width: 100%;
   }
 
   .topRight {
     width: 100%;
-    flex-wrap: wrap;          /* Gerekirse alt satıra geçsin */
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* ✅ simetri */
+    gap: 10px;
+    align-items: stretch;
   }
 
-  .topLink {
-    font-size: 12px;
-    padding: 4px 8px;
-  }
-
-  .btnPrimary {
-    flex: 1;                  /* Satırın geri kalanını kaplasın */
+  .topRight .topLink,
+  .topRight .btnPrimary {
+    width: 100%;
+    min-height: 44px;          /* mobil dokunma alanı */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    padding: 12px 10px;
+    border-radius: 12px;
+    white-space: nowrap;       /* yazı 2 satıra düşmesin */
+  }
+
+  .topRight .topLink {
+    font-size: 13px;           /* eski 12 ve padding çok küçüktü */
   }
 }
-
-
 
 .nav2Inner {
   display: flex;
@@ -1173,3 +1201,70 @@ html { scroll-behavior: smooth; }
   z-index: 2;
 }
 
+.announcementBody{
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+
+  width: 100%;
+  overflow: hidden; /* kritik: taşmayı keser */
+}
+
+/* içerikteki resimler */
+.announcementBody img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* bazen editor resme inline width verir; bunu da ezelim */
+.announcementBody img[style]{
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* tablo ve kod gibi şeyler de taşabiliyor */
+.announcementBody table{
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+}
+
+.announcementBody iframe,
+.announcementBody video{
+  max-width: 100%;
+}
+
+
+/* =========================
+   HERO ACTIONS MOBİL SİMETRİ FIX
+   ========================= */
+
+/* Genel: butonlar aynı yükseklikte olsun */
+.actions a,
+.actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+}
+
+/* 📱 Mobil */
+@media (max-width: 640px) {
+  .actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* %50 - %50 */
+    gap: 10px;
+  }
+
+  .actions a,
+  .actions button {
+    width: 100%;
+    min-height: 44px;
+    padding: 12px 10px;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
