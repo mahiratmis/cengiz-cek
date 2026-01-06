@@ -30,7 +30,7 @@ export default async function Home({searchParams}) {
 
   const now = new Date();
 
-  const sliderItems = await prisma.SliderItem.findMany({
+  const sliderItems = await prisma.sliderItem.findMany({
     where: {
       branchId: branch.id,
       isActive: true,
@@ -77,3 +77,4 @@ export default async function Home({searchParams}) {
     />
   );
 }
+
