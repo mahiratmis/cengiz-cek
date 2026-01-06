@@ -23,6 +23,8 @@ export default async function Home({searchParams}) {
         staff={[]}
         successStories={[]}
         contactBranch={null}
+        testimonials={[}
+        sliderItems={[]}        
       />
     );
   }
@@ -77,4 +79,5 @@ export default async function Home({searchParams}) {
     />
   );
 }
+
 
