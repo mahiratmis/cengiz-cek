@@ -14,6 +14,7 @@ export default async function Home({searchParams}) {
     where: { slug },
   });
 
+  console.log("Prisma models keys:", Object.keys(prisma));
 
   if (!branch) {
     // Şube bulunamazsa boş veriyle açsın, kırılmasın
@@ -79,6 +80,7 @@ export default async function Home({searchParams}) {
     />
   );
 }
+
 
 
 
