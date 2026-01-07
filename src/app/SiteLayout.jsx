@@ -10,7 +10,7 @@ import Social from "./components/Social";
 import Modal from "./components/Modal";
 import ExamApplicationForm from "./components/ExamApplicationForm";
 import BackToTop from "./components/BackToTop";
-import Container from "./components/Container";
+import Footer from "./components/Footer";
 
 export default function SiteLayout({ children }) {
   const [showForm, setShowForm] = useState(false);
@@ -32,9 +32,7 @@ export default function SiteLayout({ children }) {
       )}
 
       <BackToTop />
-      <footer className={styles.footer}>
-        <Container>© {new Date().getFullYear()} Cengiz Eğitim Kurumu</Container>
-      </footer>
+      <Footer />
     </div>
   );
 }
