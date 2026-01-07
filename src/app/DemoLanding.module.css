@@ -1423,5 +1423,163 @@ html { scroll-behavior: smooth; }
     margin-top: 10px;
     margin-bottom: 10px;
   }
-
   
+
+ /* ===== Kurumsal Navbar2 (Pill + Tablet fix + Hamburger) ===== */
+.navbar2{
+  position: sticky;
+  top: 72px;
+  z-index: 30;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.nav2Bar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+/* Sol/sağ satır wrapper'ları */
+.nav2LeftRow{
+  flex: 1;
+  min-width: 0;
+}
+
+.nav2RightRow{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Desktop/Tablet linkler */
+.nav2LinksDesktop{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;     /* tablette kaymasın diye wrap */
+  min-width: 0;
+}
+
+/* Linkleri pill yap */
+.nav2Pill{
+  text-decoration: none;
+  color: #111827;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: .15s ease;
+  white-space: nowrap;
+}
+
+.nav2Pill:hover{
+  background: #fff5f5;
+  border-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.nav2PillActive{
+  background: #fff5f5;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+/* Sağ şube seçici (desktop/tablet) */
+.nav2RightDesktop{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Hamburger (mobil) */
+.nav2Burger{
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav2BurgerBar{
+  width: 18px;
+  height: 2px;
+  background: #111827;
+  display: block;
+  border-radius: 2px;
+}
+
+/* Mobil panel */
+.nav2MobilePanel{
+  margin: 10px 0 12px;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(0,0,0,.10);
+}
+
+.nav2MobileLinks{
+  display: grid;
+  gap: 6px;
+}
+
+.nav2MobileLink{
+  display: block;
+  padding: 12px 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #111827;
+  font-weight: 800;
+  background: #fff;
+  border: 1px solid #f1f5f9;
+}
+
+.nav2MobileLink:hover{
+  background: #fff5f5;
+  border-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.nav2MobileBranch{
+  margin-top: 10px;
+  display: grid;
+  gap: 6px;
+}
+
+/* ✅ Tablet (768–1023): şube seçiciyi alt satıra al → kayma bitiyor */
+@media (min-width: 768px) and (max-width: 1023px){
+  .nav2Bar{
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .nav2LeftRow{
+    flex-basis: 100%;
+  }
+  .nav2RightRow{
+    flex-basis: 100%;
+    justify-content: flex-end;
+  }
+  .nav2Burger{
+    display: none; /* tablet hamburger istemiyorsan */
+  }
+}
+
+/* ✅ Mobil (<768): hamburger */
+@media (max-width: 767px){
+  .nav2LinksDesktop{ display: none; }
+  .nav2RightDesktop{ display: none; }
+  .nav2Burger{ display: inline-flex; }
+}
