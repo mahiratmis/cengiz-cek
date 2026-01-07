@@ -4,6 +4,19 @@ import ExcelJS from "exceljs";
 
 export const runtime = "nodejs";
 
+function startOfDay(d) {
+  const x = new Date(d);
+  x.setHours(0, 0, 0, 0);
+  return x;
+}
+
+function endOfDay(d) {
+  const x = new Date(d);
+  x.setHours(23, 59, 59, 999);
+  return x;
+}
+
+
 export async function GET(req) {
   try {
     // 🔐 Admin koruması
@@ -13,8 +26,9 @@ export async function GET(req) {
     }
 
     const { searchParams } = new URL(req.url);
-    const branch = searchParams.get("branch");
-    const where = branch ? { branchId: Number(branch) } : {};
+    const from = searchParams.get("from");
+    const to = searchParams.get("to");
+    const where = from ? { createdAt: { gte: startOfDay(from), lte: endOfDay(to) }} : {};
 
     // ⚠️ Model adını gerekirse değiştir
     const rows = await prisma.examApplication.findMany({
