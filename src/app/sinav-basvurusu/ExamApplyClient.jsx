@@ -6,17 +6,23 @@ import { useSearchParams } from "next/navigation";
 import ExamApplicationForm from "../components/ExamApplicationForm";
 
 export default function ExamApplyClient() {
-  const sp = useSearchParams();
-  const sube = sp.get("sube");
-
-  // QR ile gelen sube parametresini localStorage'a yaz (senin sistem böyle çalışıyor)
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const sp = new URLSearchParams(window.location.search);
+    const sube = sp.get("sube");
+
     if (!sube) return;
+
     try {
       localStorage.setItem("activeBranch", sube);
       window.dispatchEvent(new Event("branch-changed"));
-    } catch {}
-  }, [sube]);
+    } catch (e) {
+      console.warn("Branch ayarlanamadı", e);
+    }
+  }, []);
 
     return <ExamApplicationForm />
 }
+
+
