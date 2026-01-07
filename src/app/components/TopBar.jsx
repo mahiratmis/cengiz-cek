@@ -64,13 +64,16 @@ export default function TopBar({ onOpenForm }) {
             >
               Edesis Giriş
             </a>
-            <button
+            {/* <button
               className={styles.btnPrimary}
               type="button"
               onClick={onOpenForm}
             >
               Sınav Başvurusu
-            </button>
+            </button> */}
+            <Link href="/sinav-basvurusu" className="btn-primary">
+              Sınav Başvurusu
+            </Link>
           </div>
         </div>
       </Container>
