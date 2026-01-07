@@ -58,7 +58,7 @@ export default function Contact({ branch }) {
               title="Cengiz Eğitim Konum"
               className={styles.mapBox}
               src={mapSrc}
-              loading="lazy"
+              loading="eager"
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
@@ -67,3 +67,4 @@ export default function Contact({ branch }) {
     </section>
   );
 }
+
