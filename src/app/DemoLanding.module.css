@@ -1586,9 +1586,10 @@ html { scroll-behavior: smooth; }
 
 .footer{
   border-top: 1px solid #e5e7eb;
-  background: rgba(185, 28, 28, 0.2);
+  background: rgba(117, 2, 2, 0.979);
   padding: 28px 0 18px;
   margin-top: 40px;
+  color:white;
 }
 
 .footerTop{
@@ -1609,12 +1610,12 @@ html { scroll-behavior: smooth; }
 .footerBrandTitle{
   font-weight: 900;
   font-size: 16px;
-  color: #111827;
+  color: #f7f7f7;
 }
 
 .footerBrandText{
   margin-top: 6px;
-  color: #2e3033;
+  color: #f7f7f7;
   font-size: 13px;
   line-height: 1.55;
   max-width: 52ch;
@@ -1625,7 +1626,7 @@ html { scroll-behavior: smooth; }
   font-size: 13px;
   letter-spacing: .3px;
   text-transform: uppercase;
-  color: #111827;
+  color: #f7f7f7;
   margin-bottom: 10px;
 }
 
@@ -1678,7 +1679,7 @@ html { scroll-behavior: smooth; }
   gap: 8px;
   align-items: center;
   justify-content: space-between;
-  color: #42464e;
+  color: #f7f7f7;
   font-size: 12px;
 }
 
@@ -1687,6 +1688,6 @@ html { scroll-behavior: smooth; }
 }
 
 .footerMini{
-  color: #3d3f44;
+  color: #f7f7f7;
 }
 
