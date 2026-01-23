@@ -541,58 +541,71 @@ html { scroll-behavior: smooth; }
 }
 
 /* ---- Kadromuz ---- */
-/* ---- Kadromuz (Büyük Foto) ---- */
 .staffSection { padding: 72px 0; background:#fff; }
-
-.staffGrid{
-  display:grid;
-  gap: 20px;
-  grid-template-columns: 1fr;
+.staffGrid {
+  display:grid; gap:20px;
+  grid-template-columns: repeat(1, 1fr);
 }
-@media (min-width: 640px){ .staffGrid{ grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px){ .staffGrid{ grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 640px){ .staffGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px){ .staffGrid { grid-template-columns: repeat(4, 1fr); } }
 
 .staffCard{
-  background:#fff;
-  border:1px solid #f1f5f9;
-  border-radius: 18px;
-  overflow: hidden;              /* 🔑 foto taşmasın */
-  box-shadow:0 2px 6px rgba(0,0,0,.06);
+  background:#fff; border:1px solid #f1f5f9; border-radius:16px;
+  padding:18px; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,.06);
   transition:transform .2s ease, box-shadow .2s ease;
-  text-align: left;              /* daha premium durur */
 }
-.staffCard:hover{
-  transform:translateY(-4px);
-  box-shadow:0 10px 22px rgba(0,0,0,.12);
-}
-
-/* Foto alanı büyüten kısım */
-.staffPhotoWrap{
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 5;           /* portre için ideal */
+.staffCard:hover{ transform:translateY(-4px); box-shadow:0 10px 22px rgba(0,0,0,.12); }
+/* Yuvarlak avatar - orijinal tasarım korunur */
+.staffAvatar{
+  width: 140px;         /* istersen 120->140 büyüt */
+  height: 140px;
+  border-radius: 999px;
+  object-fit: cover;
+  object-position: center 25%;   /* yüz ortada */
+  display: block;
+  margin: 0 auto 10px;
+  border: 4px solid #fee2e2;
   background: #f8fafc;
 }
 
-.staffPhoto{
-  width: 100%;
-  height: 100%;
+/* Büyük ekranda azıcık daha büyük */
+@media (min-width: 1024px){
+  .staffAvatar{
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.staffName{ font-weight:800; margin-top:4px; }
+.staffBranch{ color:#6b7280; font-size:14px; }
+
+/* Modal foto: daha büyük, basık değil */
+.staffModalPhoto{
+  width: 280px;
+  height: 280px;
+  border-radius: 18px;
   object-fit: cover;
-  object-position: center;
+  object-position: center 27%;
+  flex-shrink: 0;
   display: block;
 }
 
-.staffName{
-  padding: 12px 14px 0 14px;
-  font-weight: 900;
-  font-size: 16px;
+/* Mobilde taşmasın */
+@media (max-width: 520px){
+  .staffModalPhoto{
+    width: 180px;
+    height: 180px;
+  }
 }
 
-.staffBranch{
-  padding: 6px 14px 14px 14px;
-  color:#6b7280;
-  font-size: 13px;
+@media (max-width: 520px){
+  .staffModalRow{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }
+
 
 
 /* ---- Başarılarımız (fotoğraflı) ---- */
