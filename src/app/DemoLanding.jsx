@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { Suspense } from "react";
+
 import styles from "./DemoLanding.module.css";
 
 import TopBar from "./components/TopBar";
@@ -35,7 +37,9 @@ export default function DemoLanding({
     <div className={styles.page}>
       <SpecialPopupClient />
       <TopBar onOpenForm={() => setShowForm(true)} />
+      <Suspense fallback={null}>
       <NavBar2 />
+      </Suspense>
       <LatestNews announcements={announcements} />
       <Slider sliderItems={sliderItems}/>
 
