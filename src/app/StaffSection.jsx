@@ -92,8 +92,7 @@ export default function StaffSection({
                   className={styles.staffAvatar}
                   src={p.photoUrl || p.photo || "/staff/1.jpg"}
                   alt={p.name}
-                  width={240}
-                  height={240}
+                  loading="lazy"
                 />
                 <div className={styles.staffName}>{p.name}</div>
                 <div className={styles.staffBranch}>{p.branch}</div>
