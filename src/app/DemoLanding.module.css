@@ -1632,7 +1632,7 @@ html { scroll-behavior: smooth; }
 
 .footer{
   border-top: 1px solid #e5e7eb;
-  background: rgba(117, 2, 2, 0.979);
+  background: #b91c1c;
   padding: 28px 0 18px;
   margin-top: 40px;
   color:white;
@@ -1713,7 +1713,7 @@ html { scroll-behavior: smooth; }
 }
 
 .ext{
-  color: #b91c1c;
+  color: #ad1e1e;
   font-weight: 900;
   font-size: 12px;
 }
