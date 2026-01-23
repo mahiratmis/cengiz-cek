@@ -51,7 +51,7 @@ export default async function Home({searchParams}) {
 
   const staff = await prisma.staff.findMany({
     where: { branchId: branch.id, isActive: true },
-    orderBy: [{ priority: "desc" }, { createdAt: "desc" }],
+    orderBy: [{ priority: "asc" }, { createdAt: "desc" }],
   });
 
   const successStories = await prisma.successStory.findMany({
@@ -77,3 +77,4 @@ export default async function Home({searchParams}) {
     />
   );
 }
+
