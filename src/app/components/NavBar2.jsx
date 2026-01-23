@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "../DemoLanding.module.css";
 import Container from "./Container";
 
@@ -23,18 +23,12 @@ export default function NavBar2() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
-  // ✅ useSearchParams yok → Suspense uyarısı yok
-  const currentSlug = useMemo(() => {
-    if (typeof window === "undefined") return "mahfesigmaz";
-    const sp = new URLSearchParams(window.location.search);
-    return sp.get("sube") || "mahfesigmaz";
-  }, []);
+  // ✅ URL değiştikçe otomatik güncellenir
+  const currentSlug = searchParams.get("sube") || "guzelyali_yks";
 
-  // Hash'e göre aktif link
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
     const setFromHash = () => {
       const hash = window.location.hash?.replace("#", "");
       if (hash && LINKS.some((l) => l.id === hash)) setActive(hash);
@@ -45,11 +39,10 @@ export default function NavBar2() {
     return () => window.removeEventListener("hashchange", setFromHash);
   }, []);
 
-  // Şubeleri çek
   useEffect(() => {
     async function loadBranches() {
       try {
-        const res = await fetch("/api/branches");
+        const res = await fetch("/api/branches", { cache: "no-store" });
         const data = await res.json();
         setBranches(Array.isArray(data) ? data : []);
       } catch (e) {
@@ -64,15 +57,16 @@ export default function NavBar2() {
   const handleBranchChange = (e) => {
     const slug = e.target.value;
 
-    const params = new URLSearchParams(
-      typeof window !== "undefined" ? window.location.search : ""
-    );
-
-    if (!slug || slug === "mahfesigmaz") params.delete("sube");
+    const params = new URLSearchParams(searchParams.toString());
+    if (!slug || slug === "guzelyali_yks") params.delete("sube");
     else params.set("sube", slug);
 
     const qs = params.toString();
     router.push(qs ? `/?${qs}` : "/");
+
+    // Eğer sayfada Server Component verisi şubeye göre değişiyorsa bu şart:
+    router.refresh();
+
     setMenuOpen(false);
   };
 
@@ -85,16 +79,13 @@ export default function NavBar2() {
     <nav className={styles.navbar2} aria-label="Site Navigasyonu">
       <Container>
         <div className={styles.nav2Bar}>
-          {/* SOL: Desktop/Tablet linkler */}
           <div className={styles.nav2LeftRow}>
             <div className={styles.nav2LinksDesktop}>
               {LINKS.map(({ id, label }) => (
                 <a
                   key={id}
                   href={`/#${id}`}
-                  className={`${styles.nav2Pill} ${
-                    active === id ? styles.nav2PillActive : ""
-                  }`}
+                  className={`${styles.nav2Pill} ${active === id ? styles.nav2PillActive : ""}`}
                   onClick={() => handleNavClick(id)}
                 >
                   {label}
@@ -103,9 +94,7 @@ export default function NavBar2() {
             </div>
           </div>
 
-          {/* SAĞ: Şube seçici + hamburger */}
           <div className={styles.nav2RightRow}>
-            {/* Desktop/Tablet şube seçici */}
             <div className={styles.nav2RightDesktop}>
               <span className={styles.branchSelectLabel}>Şube</span>
               <select
@@ -126,7 +115,6 @@ export default function NavBar2() {
               </select>
             </div>
 
-            {/* Mobil hamburger */}
             <button
               type="button"
               className={styles.nav2Burger}
@@ -141,7 +129,6 @@ export default function NavBar2() {
           </div>
         </div>
 
-        {/* Mobil açılır panel */}
         {menuOpen && (
           <div className={styles.nav2MobilePanel}>
             <div className={styles.nav2MobileLinks}>
