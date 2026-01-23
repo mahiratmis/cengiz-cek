@@ -108,7 +108,7 @@ export default function StaffSection({
           <div
             className={styles.modal}
             onClick={(e) => e.stopPropagation()}
-            style={{ maxWidth: 520 }}
+            style={{ maxWidth: 720 }}
           >
             <div className={styles.modalHeader}>
               <h3 style={{ fontWeight: 700, fontSize: 18 }}>
@@ -123,12 +123,10 @@ export default function StaffSection({
               </button>
             </div>
 
-            <div style={{ display: "flex", gap: 16, marginTop: 8 }}>
-              <img
+            <div className={styles.staffModalRow} style={{ display: "flex", gap: 16, marginTop: 8 }}>
+              <img className={styles.staffModalPhoto}
                 src={selected.photoUrl || selected.photo || "/staff/1.jpg"}
                 alt={selected.name}
-                width={140}
-                height={140}
                 style={{
                   borderRadius: 16,
                   objectFit: "cover",
