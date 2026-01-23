@@ -50,7 +50,7 @@ export default async function Home({searchParams}) {
   });
 
   const staff = await prisma.staff.findMany({
-    where: { branchId: branch.id, isActive: true },
+    where: { isActive: true },
     orderBy: [{ priority: "asc" }, { createdAt: "desc" }],
   });
 
@@ -77,4 +77,5 @@ export default async function Home({searchParams}) {
     />
   );
 }
+
 
