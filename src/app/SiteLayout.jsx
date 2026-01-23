@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { Suspense } from "react";
+
 import styles from "./DemoLanding.module.css";
 
 import TopBar from "./components/TopBar";
@@ -18,7 +20,9 @@ export default function SiteLayout({ children }) {
   return (
     <div className={styles.page}>
       <TopBar onOpenForm={() => setShowForm(true)} />
+      <Suspense fallback={null}>
       <NavBar2 />
+      </Suspense>
 
       <main>{children}</main>
 
