@@ -8,7 +8,7 @@ export default function Contact({ branch }) {
 
   const phone = branch?.phone || "0 (322) 000 00 00";
 
-  const whatsappNumber = branch?.whatsapp || "90XXXXXXXXXX";
+  const whatsappNumber = branch?.whatsapp || "905054960496";
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}`;
 
   const email = "info@cengizegitim.example"; // İstersen Branch'e email de ekleyebiliriz
@@ -67,3 +67,4 @@ export default function Contact({ branch }) {
     </section>
   );
 }
+
