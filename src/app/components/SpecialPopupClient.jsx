@@ -15,10 +15,11 @@ export default function SpecialPopupClient() {
         if (!data) return;
 
         // Aynı popup kapatıldıysa tekrar gösterme (ID bazlı)
-        const key = `special-popup-dismissed-${data.id}`;
-        const dismissed =
-          typeof window !== "undefined" ? localStorage.getItem(key) : null;
-        if (dismissed) return;
+        const key = `special-popup-seen-session-${data.id}`;
+        const seen = sessionStorage.getItem(key);
+        if (seen) return;
+
+        sessionStorage.setItem(key, "1");
 
         setPopup(data);
         setOpen(true);
