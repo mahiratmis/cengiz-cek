@@ -36,7 +36,7 @@ export default function Social({ branch }) {
   const facebookUrl =
     buildFacebookUrl(branch?.facebook) || "https://facebook.com/";
   const whatsappUrl =
-    buildWhatsappUrl(branch?.whatsapp) || "https://wa.me/90XXXXXXXXXX";
+    buildWhatsappUrl(branch?.whatsapp) || "https://api.whatsapp.com/send?phone=905054960496";
 
   return (
     <section className={styles.socialSection} id="sosyal">
@@ -90,3 +90,4 @@ export default function Social({ branch }) {
     </section>
   );
 }
+
