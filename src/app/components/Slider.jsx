@@ -35,7 +35,7 @@ export default function Slider({ sliderItems = [] }) {
     if (intervalRef.current) return;
     intervalRef.current = setInterval(() => {
       setI((v) => (v === slides.length - 1 ? 0 : v + 1));
-    }, 4000);
+    }, 8000);
   };
 
   const stopAuto = () => {
@@ -60,7 +60,7 @@ export default function Slider({ sliderItems = [] }) {
             className={styles.sliderTrack}
             style={{
               transform: `translateX(${-100 * i}%)`,
-              transition: "transform .6s ease",
+              transition: "transform .8s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           >
             {slides.map((s, idx) => {
