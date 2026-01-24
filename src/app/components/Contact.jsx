@@ -6,7 +6,7 @@ export default function Contact({ branch }) {
     branch?.address ||
     "Mahfesığmaz Mah. 79085 Sk. No:1/A Çukurova / ADANA";
 
-  const phone = branch?.phone || "0 (322) 000 00 00";
+  const phone = branch?.phone || "905054960496";
 
   const whatsappNumber = branch?.whatsapp || "905054960496";
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}`;
@@ -67,4 +67,5 @@ export default function Contact({ branch }) {
     </section>
   );
 }
+
 
