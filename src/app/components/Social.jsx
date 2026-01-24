@@ -32,9 +32,9 @@ function buildWhatsappUrl(whatsapp) {
 
 export default function Social({ branch }) {
   const instagramUrl =
-    buildInstagramUrl(branch?.instagram) || "https://instagram.com/";
+    buildInstagramUrl(branch?.instagram) || "https://instagram.com/cengizegitimadana";
   const facebookUrl =
-    buildFacebookUrl(branch?.facebook) || "https://facebook.com/";
+    buildFacebookUrl(branch?.facebook) || "https://facebook.com/61579583559207";
   const whatsappUrl =
     buildWhatsappUrl(branch?.whatsapp) || "https://api.whatsapp.com/send?phone=905054960496";
 
@@ -90,4 +90,5 @@ export default function Social({ branch }) {
     </section>
   );
 }
+
 
